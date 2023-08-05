@@ -30,3 +30,6 @@
 
 *.pdf
 .env
+
+.idea
+.DS_Store
