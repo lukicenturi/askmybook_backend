@@ -1,24 +1,37 @@
-# README
+## Backend part of https://askmybook.lukicenturi.vercel.app/
+## Frontend Repository: https://github.com/lukicenturi/askmybook_frontend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+# Setup
 
-* Ruby version
+1. Create and fill in .env using .env.example as an example.
 
-* System dependencies
+2. Install dependencies
+```
+bundle install
+```
 
-* Configuration
+3. Turn your PDF into embeddings for GPT-3:
+```
+# Open rails console
+rails console
 
-* Database creation
+# Call the service to turn the PDF into embeddings
+EmbeddingService.generate("files/book/book.pdf")
+```
 
-* Database initialization
+4. Setup database tables
+```
+rails db:migrate
+```
 
-* How to run the test suite
+5. Run the server locally
+```
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+6. Ask a question
+```
+https://localhost:3000/ask?question=When+was+the+book+published
+```
