@@ -88,8 +88,22 @@ class MainController < ApplicationController
   def ask
     question = params[:question]
     modified_question = question.end_with?('?') ? question : question + '?'
-    prompt = construct_prompt(modified_question)
-    result = OpenAIModule.get_completions_answer(prompt)
-    render json: { response: result }
+
+    answer = ""
+    saved = Question.find_by(question: question)
+
+    if saved
+      answer = saved.answer
+    else
+      prompt = construct_prompt(modified_question)
+      answer = OpenAIModule.get_completions_answer(prompt)
+
+      Question.create(
+        question: question,
+        answer: answer
+      )
+    end
+
+    render json: { response: answer }
   end
 end
