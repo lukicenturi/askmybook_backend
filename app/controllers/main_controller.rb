@@ -1,6 +1,4 @@
 require 'csv'
-require 'matrix'
-require 'numo/narray'
 require 'langchainrb'
 require 'tokenizers'
 require Rails.root.join('lib', 'openai_module')
@@ -8,9 +6,9 @@ require Rails.root.join('lib', 'openai_module')
 class MainController < ApplicationController
   # Calculate dot product of given two vector
   def calc_similarity(x, y)
-    x_array = Numo::DFloat.cast(x)
-    y_array = Numo::DFloat.cast(y)
-    x_array.dot(y_array)
+    dot_product = x.zip(y).map { |a, b| a * b }.sum
+
+    dot_product
   end
 
   # Get the data of each sections (content and embedding vector)

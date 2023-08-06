@@ -48,10 +48,6 @@ gem 'dotenv-rails'
 
 gem 'langchainrb'
 
-gem 'matrix'
-
-gem 'numo-narray'
-
 gem 'rack-cors'
 
 group :development, :test do
